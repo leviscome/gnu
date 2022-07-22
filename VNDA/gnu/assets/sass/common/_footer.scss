@@ -1,0 +1,60 @@
+.footer {
+  position: relative;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  background-color: $color-accent;
+  color: $white;
+
+  >.content {
+    display: grid;
+    grid-gap: 1.8rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    grid-template-areas:
+    'banner newsletter newsletter '
+    'social social social'
+    'paragraph categories categories'
+    'payment payment payment'
+    'signature signature signature';
+
+    // grid-template-rows: 0.8fr 0.5fr 1fr 0.5fr 0fr;
+    grid-template-columns: 0.8fr 2.2fr;
+
+    @include media("xs") {
+      grid-template-areas:
+      'newsletter banner'
+      'social social'
+      'paragraph paragraph'
+      'categories categories'
+      'payment payment'
+      'signature signature';
+
+      grid-template-rows: 1fr 0.5fr 0.5fr auto 0.5fr 0fr;
+      grid-template-columns: 1.5fr 0.5fr;
+      margin-top: 4rem;
+    }
+
+    @include media("xs") {
+      grid-template-areas:
+      'banner'
+      'newsletter'
+      'social'
+      'paragraph'
+      'categories'
+      'payment'
+      'signature';
+
+      grid-template-rows: 0fr 0.8fr 0.3fr 0.5fr auto 0.3fr 0fr;
+      grid-template-columns: 1fr;
+    }
+
+    @import "../components/footer/banner";
+    @import "../components/footer/newsletter";
+    @import "../components/footer/social";
+    @import "../components/footer/paragraph";
+    @import "../components/footer/categories";
+    @import "../components/footer/payment";
+    @import "../components/footer/signature";
+  }
+}

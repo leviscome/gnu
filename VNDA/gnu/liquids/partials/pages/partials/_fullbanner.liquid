@@ -1,0 +1,45 @@
+{% if banner == blank %}
+  {% load_banners position: position %}
+  {% assign banner = loaded_banners | limit: 1 %}
+{% endif %}
+
+{% if banner.subtitle contains '|' %}
+  {% assign parts = banner.subtitle | split: '|' %}
+  {% assign subtitle = parts[0] %}
+  {% assign text_link = parts[1] %}
+{% else %}
+  {% assign subtitle = banner.subtitle %}
+{% endif %} 
+
+<div class="banner full item">
+  <figure>
+    <img 
+      class="lazy" 
+      data-src="{{ banner.file_url | resize:'2000x' }}" 
+      alt="{{ banner.title }}"
+      loading="lazy"
+    />
+    <div class="skeleton"></div>
+  </figure>
+
+  <div 
+    class="card"
+    {% if disable_background %}
+      style="background: none;"
+    {% endif %}
+  > 
+    <div class="content">      
+      {% if banner.description != blank %}
+        <div class="description">
+          {{ banner.description }}
+        </div>
+      {% endif %}
+
+      {% if text_link != blank %}
+        <a class="arrow" href="{{ banner.name }}">
+          {{ text_link }}
+        </a>
+      {% endif %} 
+    </div>
+  </div>
+</div>

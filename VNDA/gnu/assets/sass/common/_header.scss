@@ -1,0 +1,68 @@
+.top-bar + .header.on-top {
+  top: 30px;
+}
+
+#header {
+  // padding-top: 45px;
+  background: $white;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: .3s;
+  width: 100%;
+
+  &:not(.on-top) {
+    padding-top: 0rem;
+    .content {
+      position: relative;
+    }
+    .search{
+      display: none;
+    }
+    .menu{
+      position: absolute;
+      top: 0px;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    .hamburger-logo{
+      transition: .3s;
+      width: 15%;
+      @include media('xs'){
+        width: 85%;
+      }
+    }
+
+    @include media("xs") {
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+
+      .hamburger-logo {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    @import "../components/header/logo";
+    @import "../components/header/search";
+    @import "../components/header/actions";
+    @import "../components/header/account";
+    @import "../components/header/cart";
+  }
+}
+
+@import '../components/menu/desktop';
+@import '../components/menu/mobile';
+@import '../components/menu/icon';
+
+// main{
+//   padding-top: 165px;
+//   @include media("xs") {
+//     padding-top: 115px;
+//   }
+// }

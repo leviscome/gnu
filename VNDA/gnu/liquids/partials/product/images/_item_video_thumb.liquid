@@ -1,0 +1,19 @@
+{% assign class_without_sku = '' %}
+{% assign data_skus = '' %}
+
+{% if image.skus == blank %}
+  {% assign class_without_sku = 'image-without-sku' %}
+{% else %}
+  {% assign data_skus = image.skus | join: ',' | prepend: 'data-skus-image="' | append: ',"' %}
+{% endif %}
+
+<div class="image-thumb {{ class_without_sku }} inactive swiper-slide" {{ data_skus }} data-image-thumb data-index="{{ qnt_images }}">
+  <figure>
+    <img 
+      class="lazy" 
+      data-src="{{ video.thumbnail_url }}" 
+      alt="{{ product.name }}"
+      loading="lazy"
+    />
+  </figure>
+</div>

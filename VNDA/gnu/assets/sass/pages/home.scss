@@ -1,0 +1,16 @@
+@import "../base/variables", 
+        "../base/mixins";
+
+.page-home {
+  main {
+    @import "../components/home/categories", 
+            "../components/home/categories/item",
+            "../components/product_block",
+            "../components/home/tabs_products",
+            "../components/home/category_banners",
+            "../components/products/carousel", 
+            "../components/products/grid",
+            "../components/home/instagram";
+ 
+  }
+}

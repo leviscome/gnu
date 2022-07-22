@@ -1,0 +1,131 @@
+&.desktop {
+  .card {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    text-align: start;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 90%;
+    padding: 0;
+    transform: translate(-50%, -50%);
+
+    &.left-center,
+    &.left-top,
+    &.left-bottom {
+      justify-content: flex-start;
+    }
+
+    &.right-center,
+    &.right-top,
+    &.right-bottom {
+      justify-content: flex-end;
+    }
+
+    &.center-top,
+    &.center-bottom,
+    &.center-center {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &.right-top,
+    &.left-top,
+    &.center-top {
+      align-items: flex-start;
+    }
+
+    &.right-bottom,
+    &.left-bottom,
+    &.center-bottom {
+      align-items: flex-end;
+    }
+
+    &.right-center,
+    &.left-center,
+    &.center-center {
+      align-items: center;
+    }
+
+    .content {
+      padding: 3.3rem;
+      line-height: normal;
+      background: $white;
+      margin-bottom: 0;
+
+      .description {
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 35px;
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+  
+    }
+  }
+
+  figure {
+    min-height: 38rem;
+  }
+
+  img {
+    min-height: 38rem;
+    object-fit: cover;
+  }
+
+  @include media("lg") {
+    .swiper-button-next {
+      right: 2rem;
+    }
+
+    .swiper-button-prev {
+      left: 2rem;
+    }
+  }
+
+  @include media("xs") {
+    .card {
+      max-width: 75%;
+      top: 22%;
+      left: 10%;
+
+      .content {
+        .description {
+          font-size: 1.4rem;
+        }
+
+        h1 {
+          font-size: 2.3rem;
+        }
+
+        h2 {
+          font-size: 1.4rem;
+        }
+
+        a {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  @include media("xs") {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}

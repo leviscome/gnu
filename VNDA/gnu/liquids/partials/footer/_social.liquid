@@ -1,0 +1,34 @@
+{% assign social_menu = '' %}
+
+{% load_banners position: 'footer-logo' limit: 1 %}
+{% load_menus position: 'social' %}
+
+<div class="social">
+  {% for banner in loaded_banners %}
+    <a href="/">
+      <img 
+        class="lazy"
+        data-src="{{ banner.file_url | resize: '300x' }}" 
+        alt="{{ current_shop.name }}"
+        loading="lazy"
+      />
+    </a>
+  {% endfor %}
+
+  <nav class="social-icons">
+    {% for menu in loaded_menus %}
+      <a 
+        href="{{ menu.url }}" 
+        {% if menu.external %}
+          rel="external" target="_blank"
+        {% endif %}
+      >
+        <svg role="img">
+          <title>{{ menu.title }}</title>
+          <use xlink:href="#icon-{{ menu.tooltip }}" />
+        </svg>
+      </a>
+    {% endfor %}
+  </nav>
+</div>
+

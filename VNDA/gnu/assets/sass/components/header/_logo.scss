@@ -1,0 +1,16 @@
+.logo {
+  max-width: 15rem;
+  margin: .67em 0;
+  font-size: 2em;
+
+  a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include media("xs") {
+    max-width: 9.286rem;
+    margin-left: 1rem;
+  }
+}

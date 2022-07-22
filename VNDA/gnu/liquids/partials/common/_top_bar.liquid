@@ -1,0 +1,16 @@
+{% load_banners position: 'geral-faixa-topo' limit: 1 %}
+
+{% for banner in loaded_banners %}
+  <section class="top-bar" style="background: {{ banner.color }};">
+    {{ banner.description }}
+    
+    <button 
+      class="close" 
+      type="button" 
+      aria-label="Fechar faixa" 
+      onclick="this.parentNode.remove();"
+      data-button-top>
+      &times;
+    </button>
+  </section>
+{% endfor %}

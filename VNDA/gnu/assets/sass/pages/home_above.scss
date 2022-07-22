@@ -1,0 +1,9 @@
+@import "../base/variables", 
+        "../base/mixins";
+
+.page-home {
+  main {
+    @import "../components/home/icons",
+            "../components/home/rotative";
+  }
+}

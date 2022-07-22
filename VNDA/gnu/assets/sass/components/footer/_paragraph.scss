@@ -1,0 +1,19 @@
+.paragraph {
+  display: flex;
+  grid-area: paragraph;
+  flex-direction: column;
+  border-right: 2px solid;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+
+  h4, p, strong {
+    width: 90%;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  @include media("xs") {
+    border-right: 0;
+    border-bottom: 2px solid;
+  }
+}

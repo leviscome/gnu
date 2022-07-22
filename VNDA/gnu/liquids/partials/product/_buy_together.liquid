@@ -1,0 +1,79 @@
+{% for tag in current_product.tags %}
+  {% assign tag_names = tag_names | append: ',' | append: tag.name  %} 
+{% endfor %}
+{% assign tag_names = tag_names | remove_first: ','  %} 
+
+{% load_tags names: tag_names  %}
+{% for tag in loaded_tags %}
+  {% load_products tag: tag.name %}
+  {% assign loaded_products = products %}
+{% endfor%}
+
+{% assign total_price = current_product.price %}
+{% assign total_sale_price = current_product.sale_price %}
+{% assign total_discount = 0 %}
+{% assign on_sale = false %}
+
+{% if loaded_products contains current_product %}
+  {% assign limit = 3 %}
+{% else %}
+  {% assign limit = 2 %}
+{% endif %}
+
+
+{% if loaded_products.size >=2 %}
+  <div class="buy-together">
+    <form id="form-product" class="form-product" action="{{ cart_item_url }}" enctype="multipart/form-add" method="post" data-form-product-kit style="display: none;"></form>
+    <h3 class="title">
+      compre junto
+    </h3>
+
+    <div class="products">
+      {% render 'partials/product/card_product',
+        product: current_product
+      %}
+      {% for product in loaded_products  limit: limit %}
+        {% if product.reference != current_product.reference %}
+          {% assign total_price = total_price | plus: product.price %}
+          {% assign total_sale_price = total_sale_price | plus: product.sale_price %}
+          
+          <div class="symbol plus"></div>
+          {% render 'partials/product/card_product',
+            product: product
+          %}
+        {% endif %}
+      {% endfor %}
+      {% assign discounted_percent = total_sale_price | divided_by: total_price %}
+      {% assign total_discount = 1 | minus: discounted_percent | times: 100 %}
+      {% if total_discount > 0 %}
+        {% assign on_sale = true %}
+      {% endif %}
+      
+      <div class="symbol equal"></div>
+      <div class="result" data-kit-body>
+        <h4>leve os 3 por</h4>
+        {% if on_sale %}
+          <div class="discount-wrapper">
+            <div class="discount-percent">
+              <span>
+                {{ total_discount | round: 1 | replace: '.', ',' | remove: ',0' }}%
+              </span>
+            </div>
+            <div class="price-original">
+              <span>{{ total_price | money_format }}</span>
+            </div>
+          </div>
+        {% endif %}
+        <p class="current-price">{{ total_sale_price | money_format }}</p>
+        <button type="sumbit" data-kit-button>
+          <svg class="icon">
+            <use xlink:href="#icon-cart" />
+          </svg>
+          <span>
+            comprar junto
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}

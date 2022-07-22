@@ -1,0 +1,39 @@
+{% assign banner_position = menu.title | downcase | replace: " ", "-" | replace: "á", "a" | replace: "é", "e" | replace: "í", "i" | replace: "ó", "o" | replace: "ú", "u" | replace: "ã", "a" | replace: "ẽ", "e" | replace: "ç", "c" | prepend: "geral-menu-" %}
+<script>
+  console.log('a', {{banner_position | to_json }})
+</script>
+{% load_banners position: banner_position limit: 1 %}
+{% if loaded_banners.size > 0 %}
+  <section class="banners">
+    {% for banner in loaded_banners %}
+      <div class="banner">
+        <a 
+          href="{{ banner.url }}" 
+          {% if banner.external %}
+            target="_blank"
+          {% endif %}
+        >
+          <figure>
+            <div class="image">
+              <img 
+                class="lazy"
+                data-src="{{ banner.file_url | resize: '300x' }}" 
+                alt="{{ banner.title }}" 
+                loading="lazy"
+              />
+            </div>
+            <figcaption>
+              {{ banner.description }}
+            </figcaption>
+          </figure>
+
+          <div> 
+            <a class="arrow" href="{{ menu.url }}" {% if menu.external %} target="_blank" {% endif %}>
+              VEJA MAIS
+            </a>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}

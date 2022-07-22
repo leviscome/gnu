@@ -1,0 +1,22 @@
+{% for tag in product.tags %}
+  {% if tag.type == 'banner' %}
+    <div class="banner">
+      <div class="image">
+        <figure>
+          <img 
+            class="lazy" 
+            data-src="{{ tag.image_url | resize:'2000x' }}" 
+            alt="{{ tag.title }}"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+      <div class="text-area">
+        {% comment %} <h3>upper title</h3>
+        <h1>imagem</h1>
+        <p>espaço para incluir imagens que sejam relevantes e façam parte das informações/descrição do produto.</p> {% endcomment %}
+        {{ tag.description }}
+      </div>
+    </div>
+{% endif %}
+{% endfor %}

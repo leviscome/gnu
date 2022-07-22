@@ -1,0 +1,59 @@
+.pagination {
+  padding: 0;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  li {
+    list-style: none;
+    font-size: 1rem;
+    margin: 0 20px;
+    line-height: 1.357rem;
+    text-align: center;
+    .icon {
+      height: 1.071rem;
+      width: 0.857rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    border: 2px solid $color-accent;
+    border-radius: 4px;
+    color: $color-accent;
+    padding: 0.5rem;
+    align-items: center;
+    transition: .3s;
+    &:hover{
+      background: $color-accent;
+      color: $white;
+    }
+
+    @include media("xs") {
+      width: 100%;
+    }
+  }
+
+  .current {
+    text-decoration: underline;
+  }
+
+  @include media("xs") {
+    .pagination {
+      justify-content: center;
+    }
+  }
+}

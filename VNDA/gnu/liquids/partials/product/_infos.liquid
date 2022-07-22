@@ -1,0 +1,80 @@
+<div>
+  <div class="description-wrapper">
+    {% render 'partials/product/description', 
+      product: product,
+      descricao_parts: descricao_part,
+      descricao_curta: descricao_curta, 
+    %}
+  </div>
+
+  <div>
+    <form data-form-product>
+      <div class="attributes" data-product-attributes>
+        {% render 'partials/product/variants/variants', 
+          product: product 
+        %}
+      </div>
+
+      <div class="amount-action-wrapper" data-amount-action>
+        <p class="amount-left-label">
+          apenas
+          {{ product.available_quantity }}
+          unidades disponíveis!
+        </p>
+        <p class="section-title">quantidade</p>
+        <div class="amount-actions">
+          <div class="wrap-quantity" data-quantity-selector>
+            <button
+              type="button"
+              class="minus qty-control"
+              data-action="minus-quantity"
+              data-minus-quantity
+            >
+              &minus;
+            </button>
+            <input
+              type="telephone"
+              id="quantity"
+              name="quantity"
+              class="input-quantity"
+              readonly
+              value="1"
+            />
+            <button
+              type="button"
+              class="plus qty-control"
+              data-action="plus-quantity"
+              data-plus-quantity
+            >
+              &plus;
+            </button>
+          </div>
+          <button
+            type="submit"
+            class="add-to-cart-button"
+            data-action="add-cart"
+            text-unavailable="indisponível"
+            text-available="adicionar ao carrinho"
+          >
+            {% if product.available == true %}
+              <span>adicionar ao carrinho</span>
+              {% assign classNotify = ''  %}
+            {% else %}
+              <span>produto indisponível</span>
+              {% assign classNotify = 'active'  %}
+            {% endif %}
+          </button>
+        </div>
+      </div>
+    </form>
+    {% render 'partials/product/form_notify', classNotify: classNotify, product: product, current_shop: current_shop %}
+  </div>
+  <div class="divider"></div>
+  {% render 'partials/product/shipping' %}
+  <div class="divider"></div>
+
+  <div class="share-wrapper">
+    <p class="section-title">compartilhar</p>
+    {% render 'partials/product/social_media', product: product, home_url: home_url %}
+  </div>
+</div>

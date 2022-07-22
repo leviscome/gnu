@@ -1,0 +1,94 @@
+{% load_posts from: 'instagram' %}
+
+{% capture html_instagram_posts %}
+  {% assign count_posts = 0 %}
+  {% for post in loaded_posts %}    
+    {% if count_posts < 6 %}
+      {% unless post.image contains '.mp4' %}
+        {% unless post.permalink == null %}
+          <div class="image swiper-slide">
+            <a href="{{ post.permalink }}" rel="external" target="_blank">
+              <img class="lazy" data-src="{{ post.image }}" alt="{{ post.title }}" />
+              <div class="skeleton"></div>
+            </a>
+          </div>
+          {% assign count_posts = count_posts | plus: 1 %}
+        {% endunless %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% load_banners position: position %}
+
+{% capture html_section_header %}
+  {% for banner in loaded_banners %}
+    <div class="section-header">
+      <h3 class="title">{{banner.subtitle}}</h3>
+      <p class="subtitle">{{ banner.description | strip_html }}</p>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% capture instagram_placeholders %}
+  https://cdn.vnda.dev/320x/basictemplate/2022/06/03/16_6_3_366_image15.png?v=1654284037,
+  https://cdn.vnda.dev/2000x/basictemplate/2022/05/13/10_5_9_909_195ca99b58fb06d041d962cc048b96b0.png?v=1653910758,
+  https://cdn.vnda.dev/320x/basictemplate/2022/06/03/16_6_3_366_image15.png?v=1654284037,
+  https://cdn.vnda.dev/2000x/basictemplate/2022/05/13/10_5_9_909_195ca99b58fb06d041d962cc048b96b0.png?v=1653910758,
+  https://cdn.vnda.dev/320x/basictemplate/2022/06/03/16_6_3_366_image15.png?v=1654284037,
+  https://cdn.vnda.dev/2000x/basictemplate/2022/05/13/10_5_9_909_195ca99b58fb06d041d962cc048b96b0.png?v=1653910758
+{% endcapture %}
+{% assign instagram_placeholders = instagram_placeholders | replace: ' ', '' | split: ',' %}
+
+{% if environment != 'staging' and html_instagram_posts != blank %}
+  <section class="section instagram banner" data-swiper-insta>
+    {{ html_section_header }}
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {{ html_instagram_posts }}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="swiper-button-next">
+        <svg class="icon">
+          <use xlink:href="#icon-next"/>
+        </svg>
+      </div>
+      <div class="swiper-button-prev">
+        <svg class="icon">
+          <use xlink:href="#icon-prev"/>
+        </svg>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+{% else %}
+  <section class="section instagram banner" data-swiper-insta>
+    {{ html_section_header }}
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {% for image in (1..6) %}
+          <div class="swiper-slide image">
+            <a href="#" title="placeholder">
+              <img class="lazy" data-src="{{ instagram_placeholders[forloop.index0] }}" alt="Placeholder Instagram" />
+              <div class="skeleton"></div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="swiper-button-next">
+        <svg class="icon">
+          <use xlink:href="#icon-next"/>
+        </svg>
+      </div>
+      <div class="swiper-button-prev">
+        <svg class="icon">
+          <use xlink:href="#icon-prev"/>
+        </svg>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+{% endif %}

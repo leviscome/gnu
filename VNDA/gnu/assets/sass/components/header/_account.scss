@@ -1,0 +1,12 @@
+.account {
+  @include media('xs'){
+    display: none;
+  }
+  & > a {
+    margin-right: 0.357rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<div class="breadcrumb">
+  <nav>
+    <ol>
+      <li>
+        <a href="/">
+          Home 
+          {% if tag.name  %}  
+            <span> > </span> 
+          {% endif %}
+        </a>
+      </li>
+
+      {% if q != blank %}
+        <li>
+          Busca por: "{{ q }}"
+          </a>
+        </li>
+      {% endif %}
+    
+      {% if tag.name %}
+        <li>
+          <a href="/{{ tag.name }}">
+            {{ tag.title }} 
+
+            {% if parent_tag.name  %}  
+              <span> > </span> 
+            {% endif %}
+          </a>
+        </li>
+      {% endif %}
+
+      {% if parent_tag.name %}
+        <li>
+          <a href="/{{ parent_tag.name }}">
+            {{ parent_tag.title }}
+          </a>
+        </li>
+      {% endif %}
+      
+    </ol>
+  </nav>
+</div>

@@ -1,0 +1,198 @@
+.product-info {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 2rem;
+  color: $color-accent;
+
+  @include media("xs") {
+    margin: 0;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: .8rem;
+    line-height: 150%;
+  }
+
+  .description-wrapper {
+    margin: 30px 0;
+
+    .description {
+      display: flex;
+      font-size: 14px;
+      color: $color-accent;
+      font-family: $font-family-body;
+      margin-top: 0;
+      line-height: 24px;
+      width: auto;
+      font-weight: 400;
+    }
+
+    & > div {
+      ul,
+      ol {
+        padding-left: 0;
+        list-style: none;
+        margin-top: 0;
+
+        li {
+          font-size: $font-size-small;
+          color: #888;
+          font-family: $font-family-body;
+          letter-spacing: 0.05em;
+          line-height: 1.4em;
+        }
+      }
+
+      h4 {
+        letter-spacing: 0.15em;
+        font-size: $font-size-small;
+        color: $color-accent;
+        margin: 0 0 5px;
+        font-family: $font-family-title;
+      }
+    }
+  }
+
+  form {
+    .amount-action-wrapper {
+      .amount-left-label {
+        display: none;
+
+        line-height: 1.3125rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: $color-details;
+        background-color: rgb(245, 245, 251);
+        padding: 4px 12px;
+        border-radius: 32px;
+        width: fit-content;
+      }
+
+      .amount-actions {
+        display: flex;
+
+        @include media("xs") {
+          flex-direction: column;
+
+          & > *:not(:first-child) {
+            margin-top: 8px;
+          }
+        }
+
+        .wrap-quantity {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid $color-accent;
+          border-radius: 4px;
+          flex: 1;
+          height: 48px;
+          width: 100%;
+
+          @include media("md") {
+            height: 41px;
+          }
+
+          .qty-control {
+            height: 37px;
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+
+            &.minus {
+              margin-left: 16px;
+            }
+            &.plus {
+              margin-right: 16px;
+            }
+          }
+
+          .input-quantity {
+            text-align: center;
+            width: fit-content;
+            max-width: 70px;
+            font-weight: 700;
+            font-size: 14px;
+            color: $color-accent;
+            border: 0;
+          }
+        }
+
+        > button {
+          margin-left: 8px;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 120%;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          width: fit-content;
+          transition: all 300ms ease;
+
+          background-color: $color-accent;
+          border: none;
+          border-radius: 4px;
+          color: #fff;
+          padding: 10px 16px;
+
+          transition: all 300ms ease;
+          cursor: pointer;
+          width: 100%;
+
+          &:hover {
+            background-color: lighten($color-accent, 10%);
+            transition: all 300ms ease;
+          }
+
+          &:disabled,
+          &.unavailable {
+            background-color: #ccc;
+            cursor: not-allowed;
+          }
+
+          @include media("md") {
+            font-size: 14px;
+          }
+
+          @include media("xs") {
+            flex: 1;
+            padding: 5px;
+          }
+
+          @include media("xs") {
+            flex: none;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .share-wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    .social-media {
+      display: flex;
+      .icon{
+        width: 1.3rem;
+        height: 1.3rem;
+        stroke-width: 0.5px;
+        transition: opacity .2s ease-in;
+        &:hover {
+          opacity: .8;
+        }
+      }
+      & > *:not(:first-child) {
+        margin-left: 12px;
+      }
+    }
+  }
+}

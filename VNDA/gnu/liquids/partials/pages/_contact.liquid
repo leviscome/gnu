@@ -1,0 +1,97 @@
+{% load_banners position: 'atendimento-conteudo' | limit: 1 %}
+{% load_payment_icons %}
+
+{% assign form_title = '' %}
+
+<div class="page-contact container">
+  <section class="image">
+    {% for banner in loaded_banners %}
+      <figure>
+        <img 
+            class="lazy" 
+            data-src="{{ banner.file_url | resize:'1000x' }}" 
+            alt="{{ banner.title }}"
+            loading="lazy"
+          />
+        <div class="skeleton"></div>
+      </figure>
+      {% assign form_title = banner.subtitle %}
+    {% endfor %}
+  </section>
+  <section class="content">
+    <h1>
+      {{ current_shop.name }}
+    </h1>
+
+    {{ page.body }}
+
+
+    {% load_menus position: 'social' %}
+    <nav class="social-icons">
+      {% for menu in loaded_menus %}
+        <a 
+          href="{{ menu.url }}" 
+          {% if menu.external %}
+            rel="external" target="_blank"
+          {% endif %}
+        >
+          <svg role="img">
+            <title>{{ menu.title }}</title>
+            <use xlink:href="#icon-{{ menu.tooltip }}" />
+          </svg>
+        </a>
+      {% endfor %}
+    </nav>
+  </section>
+  <section class="form">
+    <h2>
+      {{form_title}}
+    </h2>
+    
+    <form action="" data-webform="contact" method="post">
+      <input type="hidden" name="key" value="{{ current_shop.subdomain }}-contato">
+      <input type="hidden" name="reply_to" id="reply_to" value="">
+      <input type="hidden" name="vnda" type="text">
+      
+      <label for="name">
+        <span>nome *</span>
+        <input type="text" name="name" id="name" placeholder="  Seu nome completo..." required>
+      </label>
+  
+      <label for="email">
+        <span>e-mail *</span>
+        <input type="email" name="email" id="email" placeholder="  Seu email..." required>
+      </label>
+
+      <label for="phone">
+        <span>telefone</span>
+        <input type="tel" name="phone" id="phone" placeholder="  Seu telefone..." required>
+      </label>
+
+      <label for="subject">
+        <span>assunto *</span>
+        <input type="tel" name="subject" id="subject" placeholder="  O assunto..." required>
+      </label>
+  
+      <label for="message">
+        <span>mensagem *</span>
+        <textarea name="message" id="message" placeholder="  A sua mensagem..." required resize="vertical" ></textarea>
+      </label>
+
+      <div class="msg-return" data-msg-return="">
+        <div data-msg=""></div>
+        <div class="msg-success" data-msg-success="">
+          <p>Obrigado!</p>
+        </div>
+        <div class="msg-error" data-msg-error="">
+          <p>Problema ao enviar, tente novamente.</p>
+        </div>
+      </div>
+
+      <button type="submit">
+        ENVIAR MENSAGEM 
+      </button>
+    </form>
+  </section>
+    
+</div>

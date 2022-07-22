@@ -1,0 +1,59 @@
+{% body %}
+  <script src="{{ 'vue.min.js' | javascript_path }}"></script>
+  <script src="{{ '/pages/institucional/stores.js' | javascript_path }}"></script>
+{% endbody %} 
+
+{% assign token_places = '' %}
+{% if environment == "production" %}
+  {% assign token_places = '740082525abe5865213179a983c843e6' %}
+{% else %}
+  {% assign token_places = 'fddb3a43b6e7b15aa0a471e7e353f37f' %}
+{% endif %}
+
+<article class="container container-page places">
+  <header class="places-heading">
+    <h1 class="title">Onde Encontrar</h1>
+    <p class="subtitle">Encontre a loja mais próxima de você!</p>
+  </header>
+
+  <div class="places-content" id="app">
+    <form class="filter" action="">
+      <div class="field">
+        <label for="filtro-estado">Estado:</label>
+        <div class="select-container">
+          <select id="filtro-estado" name="estado" v-on:change="filterStates" v-model="stateSelected">
+            <option value="" selected disabled>Selecione o estado</option>
+            <option v-for="state in states" :value="state.value"><% state.name %></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="filtro-cidade">Cidade:</label>
+        <div class="select-container">
+          <select id="filtro-cidade" name="cidade" v-on:change="filterCities" v-model="citySelected">
+            <option value="" selected disabled>Selecione a cidade</option>
+            <option v-for="city in cities" :value="city"><% city %></option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <ul class="results" v-if="displayedData.length > 0">
+      <li v-for="result in displayedData" class="location">
+        <div class="location-inner">
+          <h3 v-if="result.name" class="location-name"><% result.name %></h3>
+          <h4 v-if="result.first_phone" class="location-phone"></i><% result.first_phone %></h4>
+          <address v-if="result.address_line_1 || result.address_line_2" class="location-address">
+            <% result.address_line_1 %>
+            <br>
+            <% result.address_line_2 %>
+          </address>
+        </div>
+      </li>
+    </ul>
+    <p v-else class="not-found">Nenhuma loja encontrada.</p>
+  </div>
+</article>
+
+<input type="hidden" data-token="{{ environment }}" id="token-id">

@@ -1,0 +1,71 @@
+.hamburger {
+  cursor: pointer;
+  display: none;
+  width: 1.786rem;
+  height: 2px * 3 + 6px * 2;
+  position: relative;
+
+  @include media("xs") {
+    display: inline-block;
+    align-self: center;
+  }
+
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  .hamburger-icon {
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    display: block;
+    top: 50%;
+    margin-top: 2px / -2;
+
+    &,
+    &::before,
+    &::after {
+      width: 1.786rem;
+      height: 1px;
+      background-color: $black;
+      border-radius: 0;
+      position: absolute;
+      transition-property: transform;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+    }
+
+    &::before {
+      top: (6px) * -1;
+    }
+
+    &::after {
+      bottom: (6px) * -1;
+    }
+
+    &::before {
+      transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+    }
+
+    &::after {
+      transition: bottom 0.1s 0.25s ease-in,
+        transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{% load_banners position: 'newsletter-popup' %}
+{% for banner in loaded_banners limit: 1 %}
+
+  <link rel="stylesheet" href="{{ 'newsletter-popup.v2.css' | component_path }}">
+
+  <script src="{{ 'newsletter-popup.v2.js' | component_path }}"></script>
+
+  {% assign successMessage = 'Obrigado!' %}
+  {% assign b_description = banner.description | strip_html | strip %}
+
+  {% if banner.description contains '<hr/>' %}
+    {% assign successMessage = banner.description | split: '<hr/>' | last | strip_html | strip %}
+    {% assign b_description = banner.description | split: '<hr/>' | first | strip_html | strip %}
+  {% endif %}
+
+  {% assign imageUrl = '' %}
+  {% assign maxWidth = 550 %}
+
+  {% if banner.file_url != blank %}
+    {% assign imageUrl = banner.file_url | resize: '350x' %}
+    {% assign maxWidth = 700 %}
+  {% endif %}
+
+  <script>
+    window.data_popup = {
+      maxWidth: '{{ maxWidth }}',
+      imageUrl: '{{ imageUrl }}',
+      title: '{{ banner.subtitle }}',
+      description: '{{ b_description }}',
+      subdomain: '{{ current_shop.subdomain }}',
+      success: '{{ successMessage }}'
+    }
+  </script>
+
+  <div id="component-popup-newsletter-root"></div>
+  
+{% endfor %}

@@ -1,0 +1,20 @@
+<div class="popup-guia-medidas popup" data-popup="guia-medidas">
+  <div class="popup-wrapper">
+    <button class="close" data-action="close-popup" data-popup="guia-medidas"></button>
+    <div class="content">
+      <div class="image">
+        <img 
+          class="lazy" 
+          data-src="{{ tag_medidas.image_url }}" 
+          alt="Guia de medidas"
+          loading="lazy"
+        />
+      </div>
+      <div class="text">
+        <div class="text-wrapper">          
+          {{ tag_medidas.description | replace: '<table', '<div class="table-responsive"><table class="table table-bordered"' | replace: '</table>', '</table></div>' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

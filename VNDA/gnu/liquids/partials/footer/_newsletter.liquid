@@ -1,0 +1,31 @@
+{% load_banners position: "newsletter-rodape" limit: 1 %}
+
+{% for banner in loaded_banners %}
+  <div class="newsletter">
+    {% if banner.subtitle %}
+      <div class="content">
+        <h3>{{ banner.subtitle }}</h3>
+        <p> {{ banner.description | strip_html }} </p>
+      </div>
+
+      <form method="post" data-webform="newsletter">
+        <input type="hidden" name="key" value="{{ current_shop.subdomain }}-newsletter">
+        <input type="hidden" name="reply_to" id="reply_to" value="">
+        <input type="hidden" name="vnda" type="text">
+
+        <input required type="email" placeholder="Digite seu e-mail..." name="email-newsletter">
+
+        <button type="submit" class="btn-submit">
+          ENVIAR
+        </button>
+
+        <div class="msg-return" data-msg-return="">
+          <div class="msg-error" data-msg-error="">
+            <p>Problema ao enviar, tente novamente.</p>
+          </div>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+{% endfor %} 
+

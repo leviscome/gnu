@@ -1,0 +1,56 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.banner.hightlights {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  :nth-child(even) {
+    flex-direction: row-reverse;
+
+    figure {
+      margin-right: 0;
+    }
+  }
+
+  .banner.hightlight.item {
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-bottom: 4.2rem;
+
+    .card {
+      justify-content: flex-start;
+
+      .content {
+        margin: 2.5rem 0;
+      }
+
+      @include media("xs") {
+        .content {
+          h1 {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
+    figure {
+      height: 22rem;
+    }
+  }
+}
+
+@include media("xs") {
+  .banner.hightlight.item {
+    margin-left: 0;
+    margin-right: 0;
+    width: auto;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+  }
+}

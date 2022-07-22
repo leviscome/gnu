@@ -1,0 +1,21 @@
+@import "./base/variables", 
+        "./base/mixins";
+        
+@import url("https://template5.vnda.dev/components/cart-drawer.v16.css");
+
+$themeColor: $color-accent;
+$colors: (
+  "white": $white,
+  "black": $color-accent,
+);
+
+@import "../../node_modules/swiper/swiper.scss";
+@import "../../node_modules/swiper/modules/navigation/navigation.scss";
+@import "../../node_modules/swiper/modules/pagination/pagination.scss";
+@import "../../node_modules/swiper/modules/free-mode/free-mode.scss";
+@import "../../node_modules/swiper/modules/effect-fade/effect-fade.scss";
+
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-size: 1rem;
+}

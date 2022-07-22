@@ -1,0 +1,25 @@
+{% load_menus position: 'principal' %} 
+
+<div class="menu">
+  <nav>
+    <ul class="list">
+      {% for menu in loaded_menus %} 
+        {% if menu.title == blank %} 
+          {% continue %} 
+        {% endif %} 
+
+        {% render 'partials/header/menu_desktop', menu: menu %} 
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+
+{% render "partials/header/menu_mobile", 
+  search_url: search_url, 
+  account_url: account_url, 
+  loaded_menus: loaded_menus,
+  img_logo: img_logo,
+  template: template
+%} 
+

@@ -1,0 +1,18 @@
+.banner {
+  // position: absolute;
+  grid-area: banner;
+  width: 25%;
+  height: 20%;
+  left: 4rem;
+  top: -2rem;
+  width: 100%;
+  transform: translateY(-2rem);
+  margin-bottom: -2rem;
+  @include media("xs") {
+    position: static;
+  }
+
+  img {
+    width: 100%;
+  }
+}

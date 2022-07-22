@@ -1,0 +1,15 @@
+{% head %}
+  <link rel="stylesheet" href="{{ 'products-filter.v6.css' | component_path }}" media="print" onload="this.media='all'"/>
+{% endhead %}
+
+{% body %}
+  <script>
+    window.aggregations = {{ aggregations | to_json }}
+  </script>
+  <script src="{{ 'products-filter.v6.js' | component_path }}"></script>
+{% endbody %}
+
+<nav class="product-list-filters">    
+  <div id="component-products-filter-vertical-root"></div>
+  <button type="button" class="product-list-filters-close-btn">X</button>
+</nav>

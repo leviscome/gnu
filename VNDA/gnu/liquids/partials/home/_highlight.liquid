@@ -1,0 +1,130 @@
+{% if banner == blank %}
+  {% if limit != blank %}
+    {% load_banners position: position | limit: limit  %}
+  {% else %}
+    {% load_banners position: position %}
+  {% endif %}
+
+  {% capture html_highlight_banner %}
+    {% for banner in loaded_banners %}
+      {{ html_highlight_banner }}
+      {% if banner.subtitle contains '|' %}
+        {% assign parts = banner.subtitle | split: '|' %}
+        {% assign subtitle = parts[0] %}
+        {% assign text_btn = parts[1] %}
+        {% assign title_text = parts[2] %}
+      {% endif %} 
+
+      <div class="banner hightlight item">
+        <figure>
+          <img 
+            class="lazy" 
+            data-src="{{ banner.file_url | resize:'2000x' }}" 
+            alt="{{ banner.title }}"
+            loading="lazy"
+          />
+          <div class="skeleton"></div>
+        </figure>
+
+        <div class="card"> 
+          <div class="content">
+            {% if subtitle != blank %}
+              <h2>{{ subtitle }}</h2>
+            {% endif %}
+
+            <h1    
+              {% if banner.color %}
+                style="color: {{ banner.color }}" 
+              {% endif %}
+            >
+              {{ title_text }}
+            </h1>
+            
+            {% if banner.description != blank %}
+              <div class="description">
+                {{ banner.description }}
+              </div>
+            {% endif %}
+
+            {% if text_btn != blank %}
+              <a 
+                {% if banner.color %}
+                  style="background-color: {{ banner.color }}" 
+                {% endif %}
+                {% if banner.external %}
+                  target="_blank"
+                {% endif %}
+                href="{{ banner.url }}" 
+              >
+                {{ text_btn }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endcapture %}
+
+  {% if html_highlight_banner %}
+    <div class="banner hightlights">
+      {{ html_highlight_banner }}
+    </div>
+  {% endif %}
+{% else %}
+  <div class="banner hightlight item">
+    <figure>
+      <img 
+        class="lazy" 
+        data-src="{{ banner.file_url | resize:'2000x' }}" 
+        alt="{{ banner.title }}"
+        loading="lazy"
+      />
+      <div class="skeleton"></div>
+    </figure>
+
+    <div class="card"> 
+      <div class="content">
+        {% assign subtitle = banner.subtitle %}
+        {% if banner.subtitle contains '|' %}
+          {% assign parts = banner.subtitle | split: '|' %}
+          {% assign subtitle = parts[0] %}
+          {% assign title_text = parts[1] %}          
+        {% endif %}
+
+        {% if subtitle != blank %}
+          <h2>{{ subtitle }}</h2>
+        {% endif %}
+
+        {% if title_text %}
+          <h1    
+            {% if banner.color %}
+              style="color: {{ banner.color }}" 
+            {% endif %}
+          >
+            {{ title_text }}
+          </h1>
+        {% endif %}
+        
+        {% if banner.description != blank %}
+          <div class="description">
+            {{ banner.description }}
+          </div>
+        {% endif %}
+
+        {% if text_btn != blank %}
+          <a 
+            {% if banner.color %}
+              style="background-color: {{ banner.color }}" 
+            {% endif %}
+            {% if banner.external %}
+              target="_blank"
+            {% endif %}
+            href="{{ banner.url }}" 
+          >
+            {{ text_btn }}
+          </a>
+        {% endif %} 
+      </div>
+    </div>
+  </div>
+{% endif %}

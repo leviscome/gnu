@@ -1,0 +1,119 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.places-heading {
+  text-align: center;
+  margin-top: 3.929rem;
+  margin-bottom: 62px;
+  .title{
+    font-size: 1.5rem;
+  }
+  .subtitle{
+    max-width: 100%;
+  }
+}
+
+.places-content {
+  .filter {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: 1.429rem;
+
+    .field {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 10px;
+      @include media('xs'){
+        margin: 0.714rem 0;
+      }
+
+      label {
+        text-transform: uppercase;
+        font-size: $font-size-small;
+        color: $black;
+        line-height: 1.143rem;
+        margin-bottom: 0.643rem;
+      }
+
+      .select-container {
+        position: relative;
+
+        &::after {
+          z-index: 2;
+          content: "";
+          width: 0.5rem;
+          height: 0.5rem;
+          border-left: 2px solid $black;
+          border-bottom: 2px solid $black;
+          display: inline-block;
+          position: absolute;
+          right: 1.429rem;
+          top: 1.143rem;
+          margin-top: 2px;
+          transform: rotate(-45deg);
+        }
+      }
+
+      select {
+        -webkit-appearance: none;
+        width: 100%;
+        border: 1px solid $black;
+        padding: 13px;
+        display: block;
+        font-size: 13px;
+        text-transform: none;
+        margin-bottom: 1.929rem;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  .not-found {
+    text-align: center;
+  }
+
+  .results {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+
+    .location {
+      flex: 0 0 calc(#{33%} - #{20px});
+      margin-bottom: 1.429rem;
+      padding: 150px;
+      background: #f7f7f7;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include media('xs') {
+        flex: 0 0 100%;
+        margin-right: 0;
+      }
+
+      h3 {
+        margin-top: 0;
+      }
+
+      h4 {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: normal;
+
+        i {
+          margin-right: 0.714rem;
+        }
+      }
+
+      address {
+        font-style: normal;
+
+        i {
+          margin-right: 0.714rem;
+        }
+      }
+    }
+  }
+}

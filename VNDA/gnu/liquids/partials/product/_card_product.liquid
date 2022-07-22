@@ -1,0 +1,72 @@
+{% assign image_urls = product.images | map: 'url' | uniq %}
+
+<div class="card-product" data-buy-together>
+  <div class="image">
+    <a href="{{ product.url }}">
+      <div class="images">
+        {% if image_urls.size > 0 %}
+          {% for image in image_urls limit: 2 %}
+            {% capture srcset_image %}
+              {{ image | resize: '700x' }} 800w,
+              {{ image | resize: '420x' }} 480w,
+              {{ image | resize: '320x' }} 320w,
+              {{ image | resize: '350x' }} 350w,
+              {{ image | resize: '170x' }} 400w
+            {% endcapture %}
+            <figure>
+              <img
+                alt="{{ product.name }}" 
+                title="Foto do produto {{ product.name }}"
+                class="lazy"
+                data-srcset="{{ srcset_image }}"
+                data-sizes="
+                  (max-width: 1920px) 480px,
+                  (max-width: 1400px) 350px,
+                  (max-width: 767px) 480px,
+                  (max-width: 480px) 480px,
+                  (min-width: 1921px) 800px" 
+                loading="lazy"
+              />
+                <div class="skeleton"></div>
+            </figure>
+          {% endfor %}
+        {% else %}
+          <figure>
+            <img
+              alt="{{ product.name }}" 
+              title="Foto do produto {{ product.name }}"
+              class="lazy"
+              data-src="//placehold.it/1000x1000" 
+              loading="lazy"
+            />
+            <div class="skeleton"></div>
+          </figure>
+        {% endif %}
+        
+        {% render 'partials/common/flag', 
+          product: product 
+        %}
+      </div>
+    </a>
+  </div>
+
+  <div class="description">
+    <h3 class="name">
+      <a href="{{ product.url }}">
+        {{ product.name }}
+      </a>
+    </h3>
+    <input type="hidden" name="sku" value="{{ product.variants[0].sku }}">
+    <input type="hidden" name="quantity" value="1">
+    <div class="price" data-was-processed="false" 
+      data-sku="" data-init-price=
+      '{ 
+        "productId": {{ product.id }}, 
+        "showInstallmentsWithoutInterest": true, 
+        "showInstallmentsWithInterest": false, 
+        "mode": "short",
+        "htmlTag": "p" 
+      }'
+    ></div>
+  </div>
+</div>

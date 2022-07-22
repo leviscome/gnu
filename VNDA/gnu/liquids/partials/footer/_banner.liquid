@@ -1,0 +1,15 @@
+{% load_banners position: 'loja-logo' limit: 1 %}
+
+{% for banner in loaded_banners %}
+  <div class="banner">
+    <a href="{{ banner.url }}" {% if banner.external %} target="_blank" {% endif %}>
+      <img 
+        class="lazy"
+        data-src="{{ banner.file_url | resize: '250x' }}" 
+        alt="{{ banner.title }}" 
+        loading="lazy"
+      />
+    </a>
+  </div>
+{% endfor %}
+

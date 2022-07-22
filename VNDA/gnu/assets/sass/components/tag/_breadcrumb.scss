@@ -1,0 +1,22 @@
+.breadcrumb {
+  margin-bottom: 2rem;
+  ol {
+    display: flex;
+    flex-direction: row;
+  
+    li {
+      margin-right: 1rem;
+      font-size: $font-size-small;
+      text-transform: lowercase;
+
+      a > span {
+        margin-left: 1rem;
+      }
+
+      &:last-child {
+        color: $color-accent;
+        margin-right: auto;
+      }
+    }
+  }
+}

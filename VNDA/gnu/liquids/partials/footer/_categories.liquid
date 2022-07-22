@@ -1,0 +1,40 @@
+{% load_menus position: 'rodape' %}
+
+<div class="categories">
+  {% for menu in loaded_menus %}
+    <div class="category close">
+      <h3>
+        {{ menu.title }}
+        <div class="arrow"></div>
+      </h3>
+
+      <ul class="close">
+        {% for menu in menu.children %}
+          <li>
+            <a 
+              href="{{ menu.url }}" 
+              {% if menu.external %} 
+                rel="external"  
+                target="_blank" 
+              {% endif %}
+            >
+              {{ menu.title }}
+            </a>
+          </li>
+        {% endfor %}
+        <li>
+          <a 
+            href="{{ menu.url }}" 
+            {% if menu.external %} 
+              rel="external" 
+              target="_blank" 
+            {% endif %}
+            class="arrow"
+          >
+            VEJA MAIS
+          </a>
+        </li>
+      </ul>
+    </div>
+  {% endfor %}
+</div>

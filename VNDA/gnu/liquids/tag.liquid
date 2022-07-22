@@ -1,0 +1,27 @@
+{% getparam 'sort' as params_sort %}
+{% getparam 'type_tags' as params_type %}
+{% getparam 'property1_values' as params_property %}
+
+{% head %}
+  {% opengraphfor tag %}
+
+  <link rel="stylesheet" type="text/css" href="/pages/tag_above.css" inline>
+  <link rel="stylesheet" href="{{ 'pages/tag.css' | stylesheet_path }}" media="print" onload="this.media='all'" />
+{% endhead %}
+
+{% load_products tag: tag.name parent_tag: parent_tag.name per_page: 24 sort: params_sort %}
+
+{% render 'partials/tag/category_item', tag: tag, disable_background: true, limit: 1 %} 
+
+<div class="container">
+  {% render "partials/tag/breadcrumb", ent_tag, tag: tag %}
+  <div class="actions">
+    <button data-action="open-filter">
+      FILTRAR
+    </button>
+  </div>
+  <div class="content">
+    {% render "partials/tag/filters", aggregations: aggregations, template: template %}
+    {% render 'partials/components/products/grid', products: products, per_page: 24, show_empty_state: true, params_sort: params_sort, params_sort: params_sort, params_type: params_type, params_property: params_property, search_url: search_url, pagination: pagination, infinity: true %}
+  </div>
+</div>

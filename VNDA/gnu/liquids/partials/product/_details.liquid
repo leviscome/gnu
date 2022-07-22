@@ -1,0 +1,91 @@
+{% capture html_dimensions %}
+  <div class="content"  id="id-dimensions">
+    <div class="dimensions" data-product-dimensions>
+      {% if product.variants[0].height %}
+        <div class="dimension height">
+          <p class="dimension-title">altura</p>
+          <p class="dimension-value">
+            {{ product.variants[0].height | replace: '.', ',' | remove: ',0' }}
+            cm
+          </p>
+        </div>
+      {% endif %}
+      {% if product.variants[0].width %}
+        <div class="dimension width">
+          <p class="dimension-title">largura</p>
+          <p class="dimension-value">
+            {{ product.variants[0].width | replace: '.', ',' | remove: ',0' }}
+            cm
+          </p>
+        </div>
+      {% endif %}
+      {% if product.variants[0].length %}
+        <div class="dimension length">
+          <p class="dimension-title">comprimento</p>
+          <p class="dimension-value">
+            {{ product.variants[0].length | replace: '.', ',' | remove: ',0' }}
+            cm
+          </p>
+        </div>
+      {% endif %}
+      {% if product.variants[0].weight %}
+        <div class="dimension weight">
+          <p class="dimension-title">peso</p>
+          <p class="dimension-value">
+            {{ product.variants[0].weight | replace: '.', ',' | remove: ',0' }}
+            kg
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endcapture %}
+
+<div class="details">
+  {% assign tabs = '' %}
+  {% assign content = '' %}
+
+  {% for part in descricao_parts %}
+    {% if forloop.first %}
+      {% assign descricao = part | strip_html %}
+    {% else %}
+      {% if forloop.index == 2 %}
+        {% assign class = "active" %}
+      {% else %}
+        {% assign class = "" %}
+      {% endif %}
+      {% if part contains "</h2>" %}
+        {% assign p = part | split:"</h2>" %}
+        {% capture tabs %}
+          {{ tabs }}
+          <span class="titulo {{class}}" data-content="#id-{{forloop.index}}">
+            {{ p[0] | strip_html }}
+          </span>
+        {% endcapture %}
+        {% capture content %}
+          {{ content }}
+          <div class="content {{class}}" id="id-{{forloop.index}}">
+            {{ p[1] | replace: '<table', '<table class="table"' }}
+          </div>
+        {% endcapture %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if tabs != blank %}
+    <div class="tabs">
+      {{ tabs | append: '<span class="titulo" data-content="#id-dimensions">Dimensões</span>'}}
+    </div>
+  {% endif %}
+  {% if content != blank %}
+    <div class="contents">
+      {{ content | append: html_dimensions }}
+    </div>
+  {% endif %}
+
+  {% if product.description == blank %}
+    <div class="invisible-divider"></div>
+  {% endif %}
+
+  <div class="divider"></div>
+</div>

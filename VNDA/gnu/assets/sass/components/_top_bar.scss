@@ -1,0 +1,40 @@
+.top-bar {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  text-align: center;
+  padding-bottom: 0.357rem;
+  padding-top: 0.357rem;
+  position: relative;
+  z-index: 50;
+  padding-right: 5%;
+  padding-left: 5%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: $color-accent;
+
+  a,
+  p {
+    color: #ffffff;
+    margin-left: 0.179rem;
+    margin-right: 0.179rem;
+    margin-bottom: 0;
+    font-size: $font-size-small;
+    line-height: 1.286rem;
+    letter-spacing: 1px;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    bottom: 0.143rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.429rem;
+    line-height: 1rem;
+    right: 5%;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="banner icons">
+  {% if limit != blank %}
+    {% load_banners position: position | limit: limit  %}
+  {% else %}
+    {% load_banners position: position %}
+  {% endif %}
+
+  {% for banner in loaded_banners %}
+    <div class="item">
+      <figure>
+        <img 
+          class="lazy" 
+          data-src="{{ banner.file_url }}" 
+          alt="{{ banner.title }}"
+          loading="lazy"
+        />
+        <div class="skeleton"></div>
+      </figure>
+
+      <div class="text"> 
+        {% if banner.subtitle != blank %}
+          <h2>{{ banner.subtitle }}</h2>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

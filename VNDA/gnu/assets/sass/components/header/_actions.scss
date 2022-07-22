@@ -1,0 +1,47 @@
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 15%;
+  transition: .3s;
+
+  a,
+  span {
+    font-family: $font-family-body;
+    font-size: $font-size-small;
+    line-height: 1.429rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+    &:hover {
+      color: $color-accent;
+    }
+
+    .count {
+      width: 1.429rem;
+      height: 1.429rem;
+      display: inline-block;
+      text-align: center;
+      background-color: $color-accent;
+      font-size: 0.7rem;
+      color: $white;
+      border-radius: 50%;
+      line-height: 1.429rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  & > div {
+    margin-right: 1.1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

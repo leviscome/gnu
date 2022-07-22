@@ -1,0 +1,70 @@
+{% if tag_type != blank %}
+  {% if limit != blank %}
+    {% load_tags types: tag_type | limit: limit  %}
+  {% else %}
+    {% load_tags types: tag_type %}
+  {% endif %}
+{% else %}
+  {% load_tags names: tag.name %}
+{% endif %}
+
+{% capture html_category_items %}
+  {% for tag in loaded_tags %}
+    {{ html_category_items }}
+
+    {% assign upper_title = tag.subtitle %}
+
+    <div class="tag category item {% if tag.image_url == blank %} no-image {% endif %}">
+      {% if tag.image_url != blank %}
+        <figure>
+          <img 
+            class="lazy" 
+            data-src="{{ tag.image_url | resize:'2000x' }}" 
+            alt="{{ tag.title }}"
+            loading="lazy"
+          />
+          <div class="skeleton"></div>
+        </figure>
+      {% endif %}
+
+      <div 
+        class="card container"
+        {% if disable_background %}
+          style="background: none;"
+        {% endif %}
+      > 
+        <div class=" content">
+      
+          {% if upper_title != blank %}
+          <h4 class="upper-title">
+            {{ upper_title }}
+          </h4>
+        {% endif %} 
+          <h1    
+            {% if tag.color %}
+              style="color: {{ tag.color }}" 
+            {% endif %}
+          >
+            {{ tag.title }}
+          </h1>
+
+          {% if subtitle != blank %}
+            <h2>{{ subtitle }}</h2>
+          {% endif %}
+
+          {% if tag.description != blank %}
+            <div class="description">
+              {{ tag.description }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% if html_category_items %}
+  <div class="tag categories">
+    {{ html_category_items }}
+  </div>
+{% endif %}

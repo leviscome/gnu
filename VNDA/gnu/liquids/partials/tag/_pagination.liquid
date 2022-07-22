@@ -1,0 +1,47 @@
+<div class="pagination">
+  {% if infinity == blank %}
+    <ul class="animate fadeInUp" data-wow-delay="0.4s">
+
+      {% if pagination.prev_url and pagination.current_page != 1 %}
+        <li class="prev">
+          <a href="{{ pagination.prev_url }}" aria-label="Anterior">
+            <svg class="icon">
+              <use xlink:href="#icon-prev"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+      
+      {% for page in pagination.pages  %}
+        {% if current_url == page.url %}
+          <li class="current">
+            <span>{{ page.number }}</span>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ page.url }}">
+              <span>{{ page.number }}</span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if pagination.next_url and pagination.current_page != pagination.total_pages %}
+        <li class="next">
+          <a href="{{ pagination.next_url }}" aria-label="Próximo" title="Próximo">
+            <svg class="icon">
+              <use xlink:href="#icon-next"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  {% else %}
+    <button type="button" aria-label="Carregar mais produtos" data-load-more>VER MAIS +</button>
+
+    {% body %}
+      <script>window._pagination = {{ pagination | to_json }}</script>
+    {% endbody %}
+  {% endif %}
+</div>
+

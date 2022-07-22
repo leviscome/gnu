@@ -1,0 +1,49 @@
+@import "../base/variables";
+@import "../base/mixins";
+
+.page-login {
+  .login-header {
+    padding-top: 2.857rem;
+    text-align: center;
+  }
+
+  .login-body{
+    padding-bottom: 3rem;
+  }
+
+  @include media("sm") {
+    .title-login {
+      font-size: 1.714rem;
+    }
+  }
+  input{
+    border: 1px solid transparent;
+    box-shadow: 0 0 20px #00000017;
+    &:focus{
+      border: 1px solid $black;
+      box-shadow: 0 0 20px #00000017;
+    }
+  }
+  label{
+    padding: 10px;
+  }
+  button.cmp-login-block{
+    background: $black;
+    color: $white;
+    &:hover{
+      background: $color-accent;
+      color: $white;
+    }
+  }
+  .cmp-login-w-4\/5{
+    @include media('xs'){
+      width: 100%;
+    }
+  }
+  .cmp-login-mb-6{
+    margin-bottom: 1rem;
+  }
+  .cmp-login-gap-4{
+    gap: 1rem
+  }
+}

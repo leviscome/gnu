@@ -1,0 +1,50 @@
+{% capture html_category_banners %}
+{% load_banners position: position %}
+  {% for banner in loaded_banners %}
+    {{ html_category_banners }}
+    <div class="tag category item">
+      <a href="{{ banner.url }}" {% if banner.external %} target="_blank" {% endif %}>
+        <figure>
+          <img 
+            class="lazy" 
+            data-src="{{ banner.file_url | resize:'1000x' }}" 
+            alt="{{ banner.title }}"
+            loading="lazy"
+          />
+          <div class="skeleton"></div>
+        </figure>
+      </a>
+
+      <div class="card"> 
+        <div class="content">
+          {% assign desc = '' %}
+          {% if banner.subtitle contains '|' %}
+            {% assign desc = banner.subtitle | split: '|' %}
+          {% endif %}
+
+          {% if desc[0] != blank %}
+            <h2  style="color: {{ banner.color }}">{{ desc[0] }}</h2>
+          {% endif %}
+          
+          {% if banner.description != blank %}
+            <div class="description">
+              {{ banner.description }}
+            </div>
+          {% endif %}
+
+          {% if desc[1] != blank %}
+            <a class="btn" href="{{ banner.url }}" {% if banner.external %} target="_blank" {% endif %}>
+              {{ desc[1] }}
+            </a>
+          {% endif %} 
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% if html_category_banners %}
+  <div class="tag categories banner">
+    {{ html_category_banners }}
+  </div>
+{% endif %}

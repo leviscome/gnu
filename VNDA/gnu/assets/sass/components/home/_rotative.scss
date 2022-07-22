@@ -1,0 +1,64 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.banner {
+  margin-bottom: 6.4rem;
+
+  @include media("xs") {
+    margin-bottom: 2rem;
+  }
+  &.rotative {
+    margin-bottom: 2.4rem;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+
+    @import "./rotative/desktop", 
+            "./rotative/mobile";
+
+    .swiper-button-next {
+      right: 1rem;
+    }
+
+    .swiper-button-prev {
+      left: 1rem;
+    }
+
+    .swiper-pagination {
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .swiper-pagination-bullet {
+        background-color: transparent;
+        border: 2px solid $color-accent;
+        opacity: 1;
+        width: 8px;
+        height: 8px;
+        &.swiper-pagination-bullet-active{
+          background-color: $color-accent;
+          width: 11px;
+          height: 11px;
+        }
+      }
+    }
+   
+
+    img{
+      width: 100%;
+    }
+
+    .video {
+      padding: 41.65% 0 0;
+      position: relative;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+    }
+  }
+}

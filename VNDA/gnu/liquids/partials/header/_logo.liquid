@@ -1,0 +1,22 @@
+{% if template == 'home' %}
+  <h1 class="logo">
+    <a href="/">
+      <img 
+        src="{{ img_logo }}" 
+        alt="{{ current_shop.name }}" 
+        loading="lazy"
+      />
+    </a>
+  </h1>
+{% else %}
+  <div class="logo">
+    <a href="/">
+      <img 
+        src="{{ img_logo }}" 
+        alt="{{ current_shop.name }}" 
+        loading="lazy"
+      />
+    </a>
+  </div>
+{% endif %}
+

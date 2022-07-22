@@ -1,0 +1,43 @@
+{% load_tags types: tag_type %}
+
+{% for tag in loaded_tags %}
+  {% assign isActive = false %}
+  {% if forloop.first %}
+    {% assign isActive = true %}
+  {% endif %}
+
+  {% capture html_links %}
+    {{ html_links }}
+    <a href="#{{ tag.name }}" value="{{ forloop.index }}" {% if isActive %} class="active" {% endif %}>{{ tag.title }}</a>
+  {% endcapture %}
+
+  {% capture html_products %}
+    {{ html_products }}
+
+    {% load_products tag: tag.name per_page: 10 %}
+
+    {% assign swiperIndex = 'swiper-home-produtos-' | append: forloop.index %}
+    <div class="product-list {{swiperIndex}} {% if isActive %}active{% endif %}" data-link="#{{ tag.name }}">
+      <div class="content">
+        {% for product in products %}
+          <div class="item">
+            {% render "partials/common/product_block", product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endcapture %}
+{% endfor %}
+
+{% assign html_products = html_products | strip %}
+
+<section class="home-products-tabs banner">
+  {% if html_products != '' %}
+    <div class="head">
+      <div class="links">
+        {{ html_links }}
+      </div>
+    </div>
+    {{ html_products }}
+  {% endif %}
+</section>

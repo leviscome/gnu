@@ -1,0 +1,30 @@
+<div class="social-media">
+  <div class="facebook">
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ home_url }}produto/{{ product.url | split: '/' | last }}" target="_blank" alt="Compartilhar no Facebook">
+      <svg class="icon">
+        <use xlink:href="#icon-facebook-share" />
+      </svg>
+    </a>
+  </div>
+  <div class="whatsapp">
+    <a href="https://wa.me/?text={{ home_url }}produto/{{ product.url | split: '/' | last }}" target="_blank" alt="Compartilhar no WhatsApp">
+      <svg class="icon">
+        <use xlink:href="#icon-whatsapp" />
+      </svg>
+    </a>
+  </div>
+  <div class="pinterest">
+    <a href="https://pinterest.com/pin/create/bookmarklet/?media={{ product.image_url }}&url={{ home_url }}produto/{{ product.url | split: '/' | last }}" target="_blank" alt="Compartilhar no Pinterest">
+      <svg class="icon">
+        <use xlink:href="#icon-pinterest" />
+      </svg>
+    </a>
+  </div>
+  <div class="twitter">
+    <a href="https://twitter.com/share?url={{ home_url }}produto/{{ product.url | split: '/' | last }}" target="_blank" alt="Compartilhar no Twitter">
+      <svg class="icon">
+        <use xlink:href="#icon-twitter" />
+      </svg>
+    </a>
+  </div>
+</div>

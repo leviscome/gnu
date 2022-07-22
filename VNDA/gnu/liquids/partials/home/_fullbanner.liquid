@@ -1,0 +1,90 @@
+{% if language == "en" %}
+  {% assign position = position | append: "_en" %}
+{% endif %}
+
+{% load_banners position: position %}
+{% if loaded_banners.size > 0 %}
+  <div class="banner rotative {{ position }} {{ resolution }}" data-banner-rotative>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {% for banner in loaded_banners %}
+          {% assign text_btn = banner.subtitle %}
+          {% assign position_text = 'center-center' %}
+          {% if banner.subtitle contains '|' %}
+            {% assign parts = banner.subtitle | split: '|' %}
+            {% assign text_btn = parts[0] %}
+            {% assign position_text = parts[1] %}
+            {% assign background = parts[2] %}
+          {% endif %} 
+
+          {% if banner.url contains "youtube" or banner.url contains "vimeo" %}
+            {% assign is_video = true %}
+          {% else %}
+            {% assign is_video = nil %}
+          {% endif %}
+
+          <div class="swiper-slide">
+            {% if is_video %}
+              {% if banner.url contains "youtube" %}
+                {% assign video_address = banner.url | split: "?v=" | last %}
+                {% assign video_code = video_address | split: '&' | first | strip %}
+
+                {% assign video_url = video_code | prepend: "https://www.youtube.com/embed/" | append: "?autoplay=0&rel=0&mute=1&muted=1" %}
+              {% elsif banner.url contains "vimeo" %}
+                {% assign video_code = banner.url | split: "/" | last | strip %}
+
+                {% assign video_url = video_code | prepend: "https://player.vimeo.com/video/" | append: "?autoplay=0&title=0&byline=0&portrait=0&&loop=1&background=1&muted=1" %}
+              {% endif %}
+
+              {% if video_url %}
+                <div class="video">
+                  <iframe class="lazy" data-src="{{ video_url }}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <div class="skeleton"></div>
+                </div>
+              {% endif %}
+            {% else %}
+              <figure>
+                <img 
+                  {% if forloop.first == true %}
+                    src="{{ banner.file_url | resize:'2000x' }}"
+                  {% else %}
+                    class="lazy" 
+                    data-src="{{ banner.file_url | resize:'2000x' }}" 
+                    loading="lazy"
+                  {% endif %}
+                  alt="{{ banner.title }}"
+                />
+                {% if forloop.first != true %}
+                  <div class="skeleton"></div>
+                {% endif %}
+              </figure>
+
+              {% if banner.description != nill %}
+                <div class="container card {{ position_text }}"> 
+                  <div class="content" style="color: {{ banner.color }}">
+                    {{ banner.description }}
+
+                    {% if text_btn != blank %}
+                      <a
+                        {% if banner.external %}
+                          target="_blank"
+                        {% endif %}
+                        class="btn"
+                        href="{{ banner.url }}" 
+                      >
+                        {{ text_btn }}
+                      </a>
+                    {% endif %} 
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+{% endif %}

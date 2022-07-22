@@ -1,0 +1,66 @@
+{% gtm product_detail: product %} 
+{% head %} 
+  {% opengraphfor product %}
+
+  <link rel="stylesheet" type="text/css" href="/pages/product_above.css" inline>
+  <link rel="stylesheet" href="{{ 'pages/product.css' | stylesheet_path }}" media="print" onload="this.media='all'" />
+{% endhead %} 
+
+{% body %}
+  <script>
+    const mzOptions = {
+      expand: 'off',
+      zoomOn: 'click',
+      zoomPosition: 'inner',
+      expandZoomMode: 'off',
+      textHoverZoomHint: '',
+      textClickZoomHint: 'Clique para dar zoom',
+    };
+
+    const mzMobileOptions = {
+      zoomWidth: 30,
+      zoomOn: 'click',
+      zoomPosition: 'inner',
+      expand: 'off',
+      expandZoomMode: 'off',
+      textClickZoomHint: 'Dois toques para o zoom',
+    };
+  </script>
+{% endbody %} 
+
+{% assign descricao_curta = '' %} 
+{% assign descricao_parts = false %} 
+
+{% if product.description contains '<hr/>' %} 
+  {% assign descricao_curta = product.description | split: '<hr/>' | first %} 
+  {% assign descricao_parts = product.description | split: '<hr/>' %} 
+{% else %} 
+  {% assign descricao_curta = product.description %} 
+{% endif %}
+
+{% assign current_product = product %} 
+{% assign tag_medidas = product.tags | where: 'type', 'guia-medidas' | first %}
+
+<div class="container product-section" data-section-product>
+  <div class="mobile-only">
+    {% render 'partials/product/product_name_price', product: product %}
+  </div>
+  <div class="product-images" data-product-images>
+    {% render 'partials/product/images/images', product: product %}
+  </div>
+  <div class="product-info">
+    <div class="desktop-only">
+      {% render 'partials/product/product_name_price', product: product %}
+    </div>
+    {% render 'partials/product/infos', product: product, descricao_curta: descricao_curta, descricao_parts: descricao_parts, tag_medidas: tag_medidas, current_shop: current_shop, home_url: home_url %}
+  </div>
+  {% render 'partials/product/details', product: product, descricao_parts: descricao_parts %}
+</div>
+
+<div class="container">
+  {% render 'partials/product/banner', product: product %}
+  {%- comment -%}
+    {% render 'partials/product/buy_together', current_product: product %}
+  {%- endcomment -%}
+  {% render 'partials/components/products/carousel', tag_type: 'relacionado' %}
+</div>

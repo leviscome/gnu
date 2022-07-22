@@ -1,0 +1,175 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.page-contact {
+  display: grid;
+  color: $color-accent;
+  grid-template-columns: 1fr 1fr;
+  // grid-template-rows: 60% 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+
+  @import "../components/footer/social";
+  .social-icons {
+    display: flex;
+    align-items: center;
+    a {
+      padding-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      background-color: $color-accent;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: opacity .2s;
+      &:hover{
+        opacity: .8;
+      }
+    }
+    svg {
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      padding-bottom: 0;
+    }
+  }
+  .content {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-end: 1;
+
+    * {
+      padding-bottom: 1rem;
+    }
+
+    .payment-icons {
+      grid-area: payment;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 25%;
+      justify-content: space-around;
+    }
+  }
+
+  .form {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 2;
+    h2 {
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+  }
+
+  .image {
+    position: relative;
+
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 1;
+
+    figure {
+      background: #fff;
+      transition: opacity 100ms ease;
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .msg-return {
+    div {
+      display: none;
+    }
+
+    .visible {
+      display: inline-block;
+    }
+  }
+
+  h2 {
+    margin: 2.5rem 0rem 1rem 0rem;
+    line-height: 1.2rem;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  form {
+    * {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-weight: 700;
+      color: $color-accent;
+      span {
+        margin-bottom: .5rem;
+        display: block;
+      }
+    }
+
+    input,
+    textarea,
+    button {
+      text-indent: 5px;
+      border: 1px solid $color-accent;
+      border-radius: 4px;
+      width: 100%;
+      height: 2.5rem;
+      outline: none;
+    }
+
+    button{
+      transition: .5s;
+      &:hover{
+        background-color: $color-accent;
+        color: $white;
+      }
+    }
+
+    textarea {
+      height: 7rem;
+      padding: 10px 0;
+    }
+  }
+
+  @include media("xs") {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1fr 0.85fr;
+    margin-bottom: 0;
+
+    .content {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .form {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .image {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    h2 {
+      margin: 0.5rem 0 1rem;
+    }
+  }
+}

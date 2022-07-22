@@ -1,0 +1,42 @@
+.banner {
+  &.icons {
+    display: flex;
+    justify-content: space-between;
+    color: $color-accent;
+
+    .item {
+      display: flex;
+      flex-direction: row;
+
+      align-items: center;
+      align-self: center;
+
+      .text {
+        margin-right: 16px;
+        h2{
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+
+      figure {
+        position: relative;
+        width: 48px;
+        height: 100%;
+        margin-right: 0.85rem;
+      }
+    }
+
+    @include media("xs") {
+      flex-direction: column;
+
+      > .item {
+        margin-bottom: 1.8rem;
+        flex-direction: row;
+        align-self: flex-start;
+        justify-content: initial;
+      }
+    }
+  }
+}

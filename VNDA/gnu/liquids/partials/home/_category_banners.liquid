@@ -1,0 +1,31 @@
+{% load_banners position: position  limit:7 %}
+{% capture html_categories %}
+  {% for banner in loaded_banners %}
+    <div class="category {% if forloop.index <= 3%} first-row {% else %} second-row {%endif%}">
+      <a href="{{banner.url}}"    {% if banner.external %} target="_blank"{% endif %}>
+      <div class="image">
+        <img class="lazy" data-src="{{banner.file_url | resize: '250x'}}" alt="{{banner.title}}">
+      </div>
+      <div class="text">
+        <h3 class="subtitle">{{banner.subtitle}}</h3>
+      </div>
+    </a>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% if html_categories != blank %}
+  <section class="categories-banners banner">
+    <div class="section-header">
+      {% load_banners position: 'home-banner-categoria-titulo' %}
+      {% for banner in loaded_banners limit: 1%}
+        <h3 class="title">
+          {{ banner.subtitle }}
+        </h3>
+      {% endfor %}
+    </div>
+    <div class="content">
+      {{html_categories}}
+    </div>
+  </section>
+{% endif %}

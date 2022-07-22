@@ -1,0 +1,3 @@
+[submodule "basictemplate.wiki"]
+	path = basictemplate.wiki
+	url = git@gitlab.com:vnda/setup/basictemplate.wiki.git

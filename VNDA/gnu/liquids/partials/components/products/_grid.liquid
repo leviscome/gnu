@@ -1,0 +1,54 @@
+{% if tag_type != blank %}
+  {% load_tags types: tag_type | limit: 1 %}
+  
+  {% for tag in loaded_tags %}
+    {% assign selected_tag = tag %}
+  {% endfor %}
+
+  {% if selected_tag.name != blank %}
+    {% load_products tag: selected_tag.name parent_tag: parent_tag.name per_page: per_page sort: params_sort %}
+  {% endif %}
+{% endif %}
+
+{% if products.size > 0 %}
+  <div class="products grid">
+    {% if tag.title != '' %}
+      <h3 class="title">
+        {{ selected_tag.title }}
+      </h3>
+    {% endif %}
+
+    <div class="content">
+      {% for product in products %}
+        {% render 'partials/common/product_block', 
+          product: product 
+        %}
+      {% endfor %}
+
+      {% if products.size > per_page %} 
+        <button>VEJA MAIS +</button>
+      {% endif %}
+    </div>
+
+    {% if pagination != blank %}
+      {% if pagination.total_pages > 1 %}
+        {% render 'partials/tag/pagination', 
+          pagination: pagination,
+          infinity: infinity 
+        %}
+      {% endif %}
+    {% endif %}
+
+    {% if show_empty_state != blank %}
+      {% if products.size == 0 %}
+        {% render "partials/tag/empty",
+          params_sort: params_sort,
+          params_type: params_type,
+          params_property: params_property,
+          params_search: params_search,
+          search_url: search_url 
+        %}
+      {% endif %} 
+    {% endif %}
+  </div>
+{% endif %}

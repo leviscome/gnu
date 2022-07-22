@@ -1,0 +1,13 @@
+{% assign data_skus = image.skus | join: ',' | prepend: 'data-skus-image="' | append: ',"' %}
+
+<div class="item-image swiper-slide" {{ data_skus }} data-image>
+  <a class="MagicZoom" href="{{ image.url }}" data-image-product>
+    <img 
+      class="lazy" 
+      data-src="{{ image.url | resize: '1000x' }}" 
+      src="{{ image.url }}" 
+      alt="{{ product.name }}" 
+      loading="lazy"
+    />
+  </a>
+</div>

@@ -1,0 +1,28 @@
+@import "../base/variables", 
+        "../base/mixins", 
+        // "../components/product/banner", 
+        "../components/product_block",
+        "../components/products/carousel",
+        "../components/product/buy_together";
+
+.page-product {
+  .related {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main {
+    > .container:not(.product-section) > div {
+      margin-bottom: 8.75rem;
+
+      @include media("md") {
+        margin-bottom: 5rem;
+      }
+    }
+  }
+}
+
+.mz-zoom-window {
+  z-index: 0 !important;
+}

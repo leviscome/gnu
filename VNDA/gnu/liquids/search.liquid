@@ -1,0 +1,30 @@
+{% getparam 'sort' as params_sort %}
+{% getparam 'type_tags' as params_type %}
+{% getparam 'property1_values' as params_property %}
+{% getparam 'q' as params_search %}
+
+{% head %}
+  <link rel="stylesheet" type="text/css" href="/pages/tag_above.css" inline>
+  <link rel="stylesheet" href="{{ 'pages/tag.css' | stylesheet_path }}" media="print" onload="this.media='all'" />
+{% endhead %}
+
+{% getparam 'q' as params_q %}
+{% load_products q: params_search per_page: 24 sort: params_sort %}
+
+<div class="container"> 
+  {%- comment -%}
+  {% render "partials/tag/breadcrumb", q: params_search %}
+  {%- endcomment -%}
+  <div class="section-header">
+    <h1 class="title">Busca por: "{{ params_q }}"</h1>
+  </div>
+
+  <div class="content">
+    {% render 'partials/components/products/grid', products: products, per_page: 24, show_empty_state: true, params_sort: params_sort, params_sort: params_sort, params_type: params_type, params_property: params_property, search_url: search_url, pagination: pagination, infinity: true %}
+    {% if products.size < 1 %}
+      <p class="without-products">
+        Não encontramos nenhum produto.
+      </p>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{% load_banners position: 'footer-protect-logo' limit: 1 %}
+{% load_payment_icons %}
+
+<div class="payment">
+  {% for banner in loaded_banners %}
+    <a href="{{ banner.url }}" {% if banner.external %} target="_blank" {% endif %}>
+      <img 
+        class="lazy"
+        data-src="{{ banner.file_url | resize:'100x' }}" 
+        alt="{{ current_shop.name }}" 
+        loading="lazy"
+      />
+    </a>
+  {% endfor %}
+
+  <nav class="payment-icons">
+    {% for payment in loaded_payment_icons %}
+      <img 
+        class="lazy" 
+        data-src="{{ payment.svg_url }}" 
+        alt="{{ payment.title }}"
+        loading="lazy"
+      />
+    {% endfor %}
+  </nav>
+</div>
+

@@ -1,0 +1,20 @@
+#cart-drawer-el {
+  --color-highlight: 235, 184, 199;
+  background-color: #ffffff8c;
+
+  .cmp-cart-drawer-free-shipping-progress-complete {
+    background-color: $color-accent;
+  }
+
+  .card-drawer-cta {
+    @extend .btn-primary !optional;
+    display: flex;
+    background-color: $color-accent;
+    color: $white;
+    border-radius: 0;
+
+    &:hover {
+      background-color: $black;
+    }
+  }
+}

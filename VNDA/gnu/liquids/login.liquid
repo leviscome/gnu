@@ -1,0 +1,22 @@
+{% head %}
+  <title>Entrar - {{ current_shop.name }}</title>
+  <meta name="description" content="Logar ou cadastrar para acessar a área de pedidos"/>
+  <link rel="stylesheet" href="pages/login.css" inline />
+  <link rel="stylesheet" href="{{ 'login.v3.css' | component_path }}">
+{% endhead %}
+
+{% body %}
+  <script src="{{ 'login.v3.js' | component_path }}"></script>
+{% endbody %}
+
+<div class="login-header">
+  <div class="container-fluid">
+    <h1 class="title">
+      Conecte-se aqui
+    </h1>
+  </div>
+</div>
+
+<div class="login-body" data-content-login>
+  <div id="component-login-static-root" data-facebook="{{ facebook_connect_url }}"></div>
+</div>

@@ -1,0 +1,15 @@
+<header class="header" id="header">
+  <div class="container content">
+    <div class="hamburger-logo">
+      <button class="hamburger" data-action="open-menu-mobile">
+        <span class="hamburger-icon"></span>
+      </button>     
+      {% render "partials/header/logo", current_shop: current_shop, img_logo: img_logo, template: template %}
+    </div>
+    
+    {% render "partials/header/search", search_url: search_url %}
+    {% render "partials/header/actions", account_url: account_url %}
+  </div>
+  {% render 'partials/header/menu', template: template, search_url: search_url, account_url: account_url, img_logo: img_logo %}
+</header>
+  

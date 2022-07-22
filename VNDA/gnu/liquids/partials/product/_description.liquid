@@ -1,0 +1,17 @@
+{% if descricao_parts %}
+  {% for desc in descricao_parts offset: 1 %}
+    {% assign tab_title = desc | split: '</h2>' | first | strip_html %}
+    {% assign tab_content = desc | split: '</h2>' | last %}
+
+    <div class="description">
+      <h4>
+        {{ tab_title }}
+      </h4>
+      {{ tab_content }}
+    </div>
+  {% endfor %}
+{% else %}
+  <div class="description">
+    {{ descricao_curta }}
+  </div>
+{% endif %}

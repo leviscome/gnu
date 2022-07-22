@@ -1,0 +1,9 @@
+@import "../base/variables", "../base/mixins";
+
+.page-page {
+  @import "./institucional/custom", 
+          "./institucional/about",
+          "./institucional/stores", 
+          "./institucional/contact",
+          "../components/home/full";
+}

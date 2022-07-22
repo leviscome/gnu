@@ -1,0 +1,46 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+#component-popup-newsletter-root {
+    > section > div > div > div.text-box.cmp-newsletter-popup-24VucyBC37Z4CYwIpXpV5X.cmp-newsletter-popup-2T_D_JTgK3GlX_W0Xo8xkm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        //estilo do título
+        h2 {
+            font-size: 1.6rem;
+            line-height: 45px;
+        }
+        
+        //estilo do texto
+        p {
+            line-height: 20px;
+            font-size: 0.97rem;
+        }
+    }
+
+    .cmp-newsletter-popup-2xAs6q-U517OsmRyLtvFtq {
+        margin-top: 2.5rem;
+
+        //estilo da mensagem de sucesso
+        p {
+            font-size: 0.97rem;
+            text-align: center;
+        }
+    }
+
+    //estilo do label
+    label {
+        font-size: 0.87rem;
+    }
+
+    //estilo do input
+    input {
+    }
+    
+    //estilo do botão
+    .btn-newsletter {
+        width: 100%;
+    }
+}

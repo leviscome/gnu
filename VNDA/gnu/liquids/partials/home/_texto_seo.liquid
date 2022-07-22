@@ -1,0 +1,17 @@
+{% load_banners position: 'home-texto-seo' %}
+{% for banner in loaded_banners limit: 1 %}
+  <div class="container texto-seo">
+    {% if banner.description != blank %}
+      {{ banner.description }}
+    {% endif %}
+
+    {% if banner.subtitle != blank %}
+      <a class="arrow" href="{{ banner.url }}" {% if banner.external %} target="_blank" {% endif %}>
+        {{ banner.subtitle }}
+        <svg class="icon">
+          <use xlink:href="#icon-next"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+{% endfor %}

@@ -1,0 +1,26 @@
+@import "../base/variables", 
+        "../base/mixins";
+
+.page-account {
+  .account-wrapper {
+    margin-bottom: 3.571rem;
+    
+    .vndaAccountWidgetRow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .vndaAccountWidgetCol {
+        width: 40%;
+        margin-right: 2.143rem;
+        flex: auto !important;
+
+        &:last-child {
+          margin-right: 0;
+          width: calc(60% - 30px);
+        }
+      }
+    }
+  }
+}

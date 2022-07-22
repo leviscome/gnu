@@ -1,0 +1,99 @@
+.shipping {
+  .list-shipping {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    h4 {
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 26px;
+    }
+    ul li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 26px;
+      span {
+        display: block;
+        font-size: 12px;
+      }
+    }
+  }
+  .zip-header {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      display: flex;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+
+  .cep-wrapper {
+    display: flex;
+    & > * {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 120%;
+    }
+
+    input {
+      border: 1px solid $color-accent;
+      border-radius: 4px;
+      width: 60%;
+      padding: 12px;
+
+      @include media("md") {
+        height: 32px;
+        padding: 0 12px;
+      }
+
+      @include media("xs") {
+        width: 50%;
+      }
+
+      @include media("xs") {
+        width: 60%;
+      }
+    }
+
+    button {
+      border: 1px solid $color-accent;
+      background-color: $white;
+      color: $color-accent;
+
+      border-radius: 4px;
+      padding: 0 24px;
+      margin-left: 8px;
+      font-weight: 700;
+      width: 40%;
+
+      text-transform: uppercase;
+      transition: all 300ms ease;
+      cursor: pointer;
+
+      @include media("md") {
+        height: 32px;
+        padding: 0 12px;
+      }
+
+      @include media("xs") {
+        width: 50%;
+      }
+
+      @include media("xs") {
+        width: 40%;
+      }
+
+      @include media("xxs") {
+        width: 60%;
+      }
+
+      &:hover {
+        border: 2px solid lighten($color-accent, 50%);
+        transition: all 300ms ease;
+      }
+    }
+  }
+}

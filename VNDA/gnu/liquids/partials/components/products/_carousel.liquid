@@ -1,0 +1,49 @@
+{% load_tags types: tag_type %}
+
+{% for tag in loaded_tags %}
+  {% load_products tag: tag.name per_page: 12 %}
+
+  {% if pagination.count > 0 %}
+    <div class="products carousel">
+      <div class="section-header">
+      
+        {% if tag.title != '' %}
+          <h3 class="title">
+            {{ tag.title }}
+          </h3>
+        {% endif %}
+
+        {% if tag.subtitle != blank %}
+          <a href="{{tag.name}}}">{{ tag.subtitle }}</a>
+        {% endif %}
+      </div>
+      
+      <div class="content" data-products-carousel>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {% for product in products %}
+              <div class="item swiper-slide" data-item>
+                {% render 'partials/common/product_block', 
+                  product: product 
+                %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="actions">
+          <div class="swiper-button-next">
+            <svg class="icon">
+              <use xlink:href="#icon-next"/>
+            </svg>
+          </div>
+          <div class="swiper-button-prev">
+            <svg class="icon">
+              <use xlink:href="#icon-prev"/>
+            </svg>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div> 
+    </div>
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,48 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.page-about {
+  margin-bottom: 5rem;
+
+  .fullbanner {
+    position: relative;
+    .container {
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      @include media('xs'){
+        position: static;
+        transform: translateY(0);
+        text-align: center;
+      }
+      .content {
+        .upper-title {
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 1.1rem;
+          color: $color-accent;
+        }
+        .title{
+          font-size: 2rem;
+          color: $color-accent;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  .text-content {
+    max-width: 1000px;
+    @include media('xs'){
+      max-width: unset;
+    }
+    .subtitle {
+      font-weight: normal;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 2rem;
+    }
+  }
+}

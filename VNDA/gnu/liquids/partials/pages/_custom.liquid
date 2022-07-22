@@ -1,0 +1,36 @@
+{% assign position = page.slug | append: '-institucional' %}
+{% load_banners position: position %} 
+
+<div class="page-custom">
+  {% if loaded_banners.size > 0 %}
+    {% for banner in loaded_banners %} 
+      {% if banner.description == blank and banner.file_url %}
+        {% render "partials/pages/partials/fullbanner",
+          banner: banner,
+          disable_background: forloop.first,
+        %}
+      {% elsif banner.file_url %}
+        {% render "partials/home/highlight",
+          banner: banner
+        %}
+      {% else %}
+        {% if banner.title %}
+          <section>
+            <h2>
+              {{ banner.subtitle }}
+            </h2>
+            {{ banner.description }}
+          </section>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <h1>
+      {{ page.title }}
+    </h1>
+  {% endif %}
+
+  <section> 
+    {{ page.body }}
+  </section>
+</div>

@@ -1,0 +1,49 @@
+@import "../../base/variables", 
+        "../../base/mixins";
+
+.tag.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .tag.category.item {
+    width: calc(50% - 12px);
+    height: 100%;
+
+    .card {
+      position: absolute;
+      justify-content: flex-start;
+      background-color: transparent;
+      color: #000;
+      .content {
+        margin: 2.5rem 0;
+        width: 100%;
+      }
+
+      @include media("xs") {
+        .content {
+          h1 {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
+    figure {
+      height: 22rem;
+    }
+  }
+
+  @include media("xs") {
+    flex-direction: column;
+  
+    .tag.category.item {
+      margin-left: 0;
+      margin-right: 0;
+      width: auto;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+

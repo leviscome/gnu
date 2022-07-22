@@ -1,0 +1,37 @@
+.flag {
+  position: absolute;
+  z-index: 4;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.357rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  padding: 0.571rem 20px;
+
+  &.center {
+    right: 50%;
+    transform: scale(1) translateX(50%);
+  }
+  
+  &.right {
+    right: 0.714rem;
+  }
+
+  &.left {
+    left: 0.714rem;
+  }
+
+  &.top {
+    top: 0.714rem;
+  }
+
+  &.base {
+    bottom: 0.714rem;
+  }
+
+  img {
+    display: block;
+  }
+}

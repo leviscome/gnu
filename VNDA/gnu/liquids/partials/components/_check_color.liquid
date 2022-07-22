@@ -1,0 +1,17 @@
+
+{% assign color_name = color | split: '|' | first %}
+{% assign color_hexa = color | split: '|' | last | downcase %}
+
+
+{% assign color_white = '' %}
+{% if color_hexa contains '#fff' %}
+  {% assign color_white = 'is-white' %}
+{% endif %}
+
+<div class="outside-color">
+  <span class="color {{ color_white }}" style="background: {{ color_hexa }};">
+    <span class="tooltip">
+      {{ color_name }}
+    </span>
+  </span>
+</div>

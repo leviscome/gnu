@@ -1,0 +1,46 @@
+{% for tag in current_product.tags %}
+  {% if tag.type == 'relacionado' %}
+    {% load_products tag: tag.name per_page: 12 %}
+
+    {% if pagination.count > 0 %}
+      <div class="section-products section">
+        <div class="container-fluid">
+          <div class="section-heading">
+            {% if tag.title != '' %}
+              <h3 class="title">
+                {{ tag.title }}
+              </h3>
+            {% endif %}
+
+            {% if tag.description %}
+              <p class="subtitle">
+                {{ tag.description }}
+              </p>
+            {% endif %}
+          </div>
+
+          <div class="section-produtos section-carrosel-produtos" data-carrosel-produtos>
+            <div class="carrosel-produtos swiper">
+              <div class="swiper-wrapper">
+                {% for product in products %}
+
+                  {% if product.id == current_product.id %}
+                    {% continue %}
+                  {% endif %}
+
+                  <div class="item swiper-slide" data-item>
+                    {% render 'partials/common/product_block',
+                      product: product 
+                    %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}

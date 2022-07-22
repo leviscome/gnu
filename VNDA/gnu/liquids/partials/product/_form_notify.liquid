@@ -1,0 +1,21 @@
+<form action="/lista_de_espera" method="post" class="notify-when-arrives {{ classNotify }}" data-form-notify>
+  <label for="email-notify-when-arrives">Avise-me quando chegar</label>
+  <div class="form-wrapper">
+    <input type="hidden" name="key" value="{{ current_shop.subdomain }}-avise-me">
+    <input type="hidden" name="sku" value="{{ product.variants[0].sku }}">
+    <input type="hidden" name="nome" value="{{ product.name }}">
+    <input type="hidden" name="url" value="{{ product.url }}">
+    <input type="hidden" name="referencia" value="{{ product.reference }}">
+    <input class="email" type="email" name="email" id="email-notify-when-arrives" placeholder="seu email" required>
+    <button aria-label="Enviar e-mail para receber o aviso" type="submit">Enviar</button>
+    <div class="msg-retorno" data-msg-retorno="">
+      <div data-msg=""></div>
+      <div class="msg-success" data-msg-success="">
+        <p>Obrigado! Enviado com sucesso.</p>
+      </div>
+      <div class="msg-error" data-msg-error="">
+        <p>Problema ao enviar, tente novamente.</p>
+      </div>
+    </div>
+  </div>   
+</form>
