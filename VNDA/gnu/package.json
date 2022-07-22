@@ -8,7 +8,7 @@
   "config": {
     "liquid": "4.0.3",
     "url": "https://gnu.vnda.dev",
-    "nameprod": "www.gnu.vnda.dev",
+    "nameprod": "gnu.vnda.dev",
     "debug": "true"
   },
   "scripts": {
